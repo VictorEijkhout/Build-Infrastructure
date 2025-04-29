@@ -18,9 +18,16 @@ Installation in TACC jail is done through spec files.
 For each package there is a single spec file, 
 which gets customized to each cluster.
 
+Repository: https://github.com/VictorEijkhout/tacc_specfiles
+
 ## Testing
 
 Both local installations and official TACC installations can be tested.
 Beware: writing the actual tests can be headache.
 
 Repository: https://github.com/VictorEijkhout/software-testing
+
+## Missing from this story
+
+In each cluster's jail there are a few scripts for updating these repositories.
+I have not generalized those.

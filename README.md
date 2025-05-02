@@ -31,3 +31,24 @@ Repository: https://github.com/VictorEijkhout/software-testing
 
 In each cluster's jail there are a few scripts for updating these repositories.
 I have not generalized those.
+
+Each cluster has a directory `victor_scripts` in jail.
+- Update all repositories: `victor_scripts/pull_all.sh`. 
+- Download latest version of the desired package: `victor_scripts/make_download yourpackage`.
+  This uses the version from `victor_scripts/makefiles/yourpackage/Makefile`.
+- Build:
+```
+victor_scripts/tacc_specfiles/thiscluster_specfiles/install.sh yourpackage # non-mpi
+victor_scripts/tacc_specfiles/thiscluster_specfiles/install.sh -m yourpackage # mpi
+victor_scripts/tacc_specfiles/thiscluster_specfiles/install.sh -c g -v 13 yourpackage # one compiler only: g/i/n
+victor_scripts/tacc_specfiles/thiscluster_specfiles/install.sh -r yourpackage # only re-install rpms, do not regenerate
+victor_scripts/tacc_specfiles/thiscluster_specfiles/install.sh -p yourpackage yourpackage-variant # variant : seq/par or so
+```
+
+Notes on the pull script:
+- This also installs the cluster-specific `install.sh` packages used above.
+- Since jail has git/ssh problems,
+  this pull scripts does a `git stash && git pull`. In other words, you can not make permanent changes 
+  to the repos from jail.
+
+
